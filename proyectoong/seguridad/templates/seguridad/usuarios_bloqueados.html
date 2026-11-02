@@ -1,0 +1,28 @@
+{% extends 'Front_end/base.html' %}
+{% block content %}
+{% if user.is_superuser %}
+<h1>USUARIOS BLOQUEADOS</h1>
+<table>
+  <thead><tr><th>usuario</th><th>correo</th><th>bloqueado desde</th><th></th></tr></thead>
+  <tbody>
+    {% for b in bloqueos %}
+    <tr>
+      <td>{{ b.usuario.username }}</td>
+      <td>{{ b.usuario.email }}</td>
+      <td>{{ b.fecha_bloqueo }}</td>
+      <td>
+        <form method="POST" action="{% url 'habilitar_usuario' b.usuario.id %}">
+          {% csrf_token %}
+          <button type="submit">Habilitar</button>
+        </form>
+      </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4">No hay usuarios bloqueados.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<h2>Ud no tiene permiso para la app ong</h2>
+{% endif %}
+{% endblock %}

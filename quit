@@ -1,0 +1,154 @@
+[33mcommit c22b1f1c85953bb1b801b65fb85d184324e2136f[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: amamanic204 <amamani204@umsa.bo>
+Date:   Mon Dec 1 11:51:01 2025 -0400
+
+    adicionando los archivos README.md y requirements.txt
+
+[33mcommit 1b09943df0f296f5bb7072551f5c89cbd81de395[m
+Author: amamanic204 <amamani204@umsa.bo>
+Date:   Mon Dec 1 07:52:55 2025 -0400
+
+    se ha restringido las funcionalidades a los usuarios previamente identificados
+
+[33mcommit f71da4457f2317e4630d4ea85b632fe124023eef[m
+Author: amamanic204 <amamani204@umsa.bo>
+Date:   Mon Dec 1 07:38:28 2025 -0400
+
+    se aplico las restricciones a los usuarios de acuerdo a lo decido
+
+[33mcommit 7d8af57a9c299f52b204313ff65367eaf48852ac[m
+Author: amamanic204 <amamani204@umsa.bo>
+Date:   Mon Dec 1 07:04:44 2025 -0400
+
+    arregla de pagina principal, cambiar nombre de index.html a base.html
+
+[33mcommit 329ef7275952dad1b8c50d554f47adfa4d1de2f1[m
+Author: EddyRodrigo <ecuyunak@fcpn.edu.bo>
+Date:   Sun Nov 30 22:22:23 2025 -0400
+
+    base de datos
+
+[33mcommit a5b138a893a9d4739a0d7d33379bf0613515bbe3[m
+Author: amamanic204 <amamani204@umsa.bo>
+Date:   Sun Nov 30 22:14:48 2025 -0400
+
+    adicion funciones de hoja de asistencia y eventos participados, arreglando las llaves foraneas de las tablas
+
+[33mcommit b881aee13af1166112998195867dcdbc2eb9f8ef[m
+Author: amamanic204 <amamani204@umsa.bo>
+Date:   Sun Nov 30 07:04:04 2025 -0400
+
+    se cambio el CRUD para la nueva BD diseñada
+
+[33mcommit 908452cd5b1b7cc8288aa2971f7509398e0644b3[m
+Author: Gerson <gersoneitor67n@gmail.com>
+Date:   Sat Nov 29 18:20:25 2025 -0400
+
+    Version mejorada botones y logo
+
+[33mcommit 8f051d289e25e9cee45c54ddbd2463f73ca750f5[m
+Author: Gerson <gersoneitor67n@gmail.com>
+Date:   Fri Nov 28 01:04:18 2025 -0400
+
+    Version mejorada css y botones
+
+[33mcommit cc04b426ed37d2a5970ce5f91703a87bb711afde[m
+Author: amamanic204 <amamani204@umsa.bo>
+Date:   Mon Nov 24 14:34:27 2025 -0400
+
+    usando la bd ong.sql original
+
+[33mcommit eba19ac41a80bd43dcb63ee229b056d811bfd433[m
+Author: amamanic204 <amamani204@umsa.bo>
+Date:   Mon Nov 24 05:15:22 2025 -0400
+
+    Cambio de nombre de 'appAsistencia' a 'apppong', arreglar error en el
+    crud de la tabla asistencia, сambio de varios accesos, dandole un poco
+    de estilo al logo
+
+[33mcommit bedfbc638cc37b18237e10d30e5ae2271aa6d48a[m
+Author: Gerson <gersoneitor67n@gmail.com>
+Date:   Sun Nov 23 18:39:24 2025 -0400
+
+    Actualización del proyecto Django: cambios recientes, mas que todo los estilos
+
+[33mcommit a6c3b4cbcfbfe4b669747036b64abb0bae0a126a[m
+Merge: 341b5ac fb2f58e
+Author: nrparedes <148645278+German6513@users.noreply.github.com>
+Date:   Sat Nov 22 21:55:55 2025 -0400
+
+    Merge pull request #1 from German6513/NoeRoger
+    
+    cambio de Rol
+
+[33mcommit fb2f58edde8e3313522550079424da145d37f909[m
+Author: nrparedes <noerogerparedesquino159@gmail.com>
+Date:   Sat Nov 22 21:52:11 2025 -0400
+
+    cambio de Rol
+
+[33mcommit 341b5ac833c7acd0bf59ff51ac21fd4aee004857[m
+Author: romelengine <romelrobinhoquispecayo@gmail.com>
+Date:   Fri Nov 21 15:10:28 2025 -0400
+
+    Se arregla codigo de estilos
+
+[33mcommit 06e3486657eed9ed25b6cc50e2273ac0625a1f9e[m
+Author: romelengine <romelrobinhoquispecayo@gmail.com>
+Date:   Fri Nov 21 10:59:09 2025 -0400
+
+    Se agrega funcionalidades Login
+
+[33mcommit 33cd0ebff9090d68deb1981c547886ab5b873344[m
+Author: romelengine <romelrobinhoquispecayo@gmail.com>
+Date:   Fri Nov 21 09:58:38 2025 -0400
+
+    Se agrega el login al Index
+
+[33mcommit c519ce662cc08c112b2d918e9ccd8a3fa1786dd2[m
+Author: romelengine <romelrobinhoquispecayo@gmail.com>
+Date:   Fri Nov 21 09:32:26 2025 -0400
+
+    Se agrega la funcinalidad Horas acumuladas
+
+[33mcommit 936e0d6ff2ff758d0f589d5e2abb491c4f0cf39e[m
+Author: romelengine <romelrobinhoquispecayo@gmail.com>
+Date:   Fri Nov 21 08:49:09 2025 -0400
+
+    Se crea la app Front_end
+
+[33mcommit 5ea536fc5c6e6b379fb3b2d9522088c7c8878389[m
+Author: romelengine <romelrobinhoquispecayo@gmail.com>
+Date:   Thu Nov 20 23:29:24 2025 -0400
+
+    Se ordena los archivos del template
+
+[33mcommit ce7f61df968314c00e97adc7c8673aeeeb720259[m
+Author: romelengine <romelrobinhoquispecayo@gmail.com>
+Date:   Thu Nov 20 16:58:07 2025 -0400
+
+    Se loguea la BD a admin.py
+
+[33mcommit 19243418fca1f67c84dbd39f5c5d89663602374c[m
+Author: romelengine <romelrobinhoquispecayo@gmail.com>
+Date:   Thu Nov 20 16:18:19 2025 -0400
+
+    se guardan cambios de ajustes
+
+[33mcommit f3167c53d467987f5f6c7881bf880c37d3096071[m
+Author: romelengine <romelrobinhoquispecayo@gmail.com>
+Date:   Thu Nov 20 16:16:23 2025 -0400
+
+    Se agrega el archivo Static y se elimina residuos del proyecto
+
+[33mcommit bd1d7cb2023a70a1c41201b800723fb8c4f94e1f[m
+Author: EddyRodrigo <eddy14rodrigo@gmail.com>
+Date:   Wed Nov 19 21:20:59 2025 -0400
+
+    gitignore
+
+[33mcommit 04f5901db67e8909191e7de8d614950040a7c094[m
+Author: amamanic204 <amamani204@umsa.bo>
+Date:   Wed Nov 19 09:46:20 2025 -0400
+
+    primer commit

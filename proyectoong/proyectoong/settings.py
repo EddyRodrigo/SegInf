@@ -28,7 +28,8 @@ SECRET_KEY = 'django-insecure-_d!1hvye)80gt)q$f5v-kl+2)@%z6rzffz*f6*0o)*3_#sa$ho
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.6', 'localhost', '127.0.0.1']  # ip de la pc, localhost y loopback:ip local de mi pc
 
 
 # Application definition
@@ -42,7 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Front_end.apps.FrontEndConfig',
     'appong.apps.AppongConfig',
+    'seguridad.apps.SeguridadConfig',   #Agrege esto<----------------
 ]
+MAX_INTENTOS_LOGIN = 3    # y Estos<-----------------------------------
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -87,12 +90,12 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'archong',
+        'NAME': 'ong3',
         'HOST': 'localhost',
         'PORT': '3306',
         'USER': 'root',
         # 'PASSWORD': 'LoboBlanco152',
-        'PASSWORD': '12345678'
+        'PASSWORD': 'Ong2026Nueva!'
     }
 }
 

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from seguridad.utils import registrar   #*<------ esto mas
 # Create your views here.
 
 def index(request):
@@ -10,8 +11,12 @@ def index(request):
     else:
         return redirect('login')
 
-#Cerrar Sesión Cuenta
+#Cerrar Sesión Cuenta               <<<----------ORIGINAL
+#def cerrar_sesion(request):
+ #   logout(request)
+  #  return redirect('index')
 def cerrar_sesion(request):
+    registrar(request, 'LOGOUT')
     logout(request)
     return redirect('index')
 

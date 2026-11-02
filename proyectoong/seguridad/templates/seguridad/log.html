@@ -1,0 +1,29 @@
+{% extends 'Front_end/base.html' %}
+{% block content %}
+{% if user.is_superuser %}
+<h1>REGISTRO DE ACCIONES</h1>
+<form method="GET">
+  <input type="text" name="usuario" placeholder="usuario" value="{{ usuario }}">
+  <select name="accion">
+    <option value="">Todas las acciones</option>
+    {% for a in acciones %}
+    <option value="{{ a }}" {% if a == accion_sel %}selected{% endif %}>{{ a }}</option>
+    {% endfor %}
+  </select>
+  <button type="submit">Filtrar</button>
+</form>
+<table>
+  <thead><tr><th>fecha</th><th>usuario</th><th>acción</th><th>tabla</th><th>id</th><th>detalle</th><th>IP</th></tr></thead>
+  <tbody>
+    {% for r in registros %}
+    <tr>
+      <td>{{ r.fecha }}</td><td>{{ r.usuario }}</td><td>{{ r.accion }}</td>
+      <td>{{ r.tabla }}</td><td>{{ r.objeto_id }}</td><td>{{ r.detalle }}</td><td>{{ r.ip }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<h2>Ud no tiene permiso para la app ong</h2>
+{% endif %}
+{% endblock %}

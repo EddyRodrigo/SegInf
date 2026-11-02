@@ -11,12 +11,16 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: #2e8b57;
+    background-color: #2e8b57;   /**/
     padding: 20px;
 }
 
-.front_end header .titulo{
-    text-align: flex-start;
+.front_end header .titulo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
     color: white;
 }
 
@@ -240,12 +244,12 @@ input[type="password"] {
 .front_end nav {
     width: 100%;
     background: #2e8b57;
-   /* border-top: 2px solid white; *//* Linea de arriba en el nav*/
-   /* border-bottom: 2px solid white;*/ /* Linea de abajo en el nav */
     display: flex;
     justify-content: center;
-    gap: 80px;
-    padding: 14px 40px;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    padding: 14px 10px;
     position: relative;
 }
 
@@ -287,4 +291,50 @@ input[type="password"] {
 
 .front_end nav .btn.active::after {
     width: 100%;
+}
+
+
+
+@media screen and (max-width: 768px) {
+
+    .front_end header {
+        flex-direction: column;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .front_end header .titulo {
+        width: 100%;
+        flex: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .front_end header #logo {
+        font-size: 38px;
+        margin: 0;
+    }
+
+    .front_end header .titulo nav {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+        padding: 10px 0;
+    }
+
+    .front_end header .titulo nav .btn {
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    .front_end header .login {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 }
