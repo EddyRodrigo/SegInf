@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_d!1hvye)80gt)q$f5v-kl+2)@%z6rzffz*f6*0o)*3_#sa$ho'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['192.168.1.6', 'localhost', '127.0.0.1']  # ip de la pc, localhost y loopback:ip local de mi pc
@@ -62,7 +62,7 @@ ROOT_URLCONF = 'proyectoong.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -89,13 +89,17 @@ DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ong3',
+        #'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ONG',
         'HOST': 'localhost',
-        'PORT': '3306',
-        'USER': 'root',
+        #'PORT': '3306',
+        'PORT': '5432',
+        #'USER': 'root',
+        'USER': 'postgres',
         # 'PASSWORD': 'LoboBlanco152',
-        'PASSWORD': 'Ong2026Nueva!'
+        #'PASSWORD': 'Ong2026Nueva!'
+        'PASSWORD': 'romel.123',
     }
 }
 

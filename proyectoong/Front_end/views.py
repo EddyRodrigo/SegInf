@@ -35,3 +35,6 @@ def registro (request):
     else:
         form = UserCreationForm()
     return render(request, 'Front_end/registro.html', {'form': form})
+
+def error_404_view(request, exception):
+    return render(request, '404.html', status=404)
