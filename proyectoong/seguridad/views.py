@@ -9,7 +9,7 @@ from django.views.decorators.http import require_POST
 
 from .models import Bitacora, BloqueoUsuario
 from .permisos import solo_superusuario as solo_admin
-from .utils import cambiar_estado, estado_de, registrar
+from .utils import ROLES, aplicar_rol, cambiar_estado, estado_de, registrar, rol_de
 
 MENSAJE_GENERICO = 'Usuario o contraseña incorrectos, o la cuenta no está disponible.'
 MOTIVO_INTENTOS = 'Superó el máximo de intentos de contraseña'
@@ -82,7 +82,8 @@ def usuarios(request):
         es_yo = u.pk == request.user.pk
         filas.append({
             'usuario': u,
-            'rol': 'Administrador' if u.is_superuser else ('Operador' if u.is_staff else 'Registrado'),
+            'rol': ROLES[rol_de(u)],
+            'rol_codigo': rol_de(u),
             'estado': estado,
             'estado_texto': 'Activa' if estado == BloqueoUsuario.ACTIVA else 'Suspendida',
             'motivo': b.motivo if b else '',
@@ -90,6 +91,7 @@ def usuarios(request):
             'fecha_estado': b.fecha_estado if b else None,
             'es_yo': es_yo,
             'puede_eliminar': not es_yo and not u.is_superuser,   # admins: solo por consola
+            'puede_cambiar_rol': not es_yo and not u.is_superuser,   # admins: solo por consola
         })
     n_activas = sum(1 for f in filas if f['estado'] == BloqueoUsuario.ACTIVA)
     n_suspendidas = len(filas) - n_activas
@@ -155,6 +157,40 @@ def eliminar_usuario(request, id):
               detalle=f'Eliminó a {nombre} ({rol})')
     objetivo.delete()   # BloqueoUsuario se borra en cascada; la bitácora conserva el historial
     messages.success(request, f'Usuario {nombre} eliminado.')
+    return redirect('usuarios')
+
+
+@solo_admin
+@require_POST
+def cambiar_rol_usuario(request, id):
+    objetivo = get_object_or_404(User, pk=id)
+    nuevo = request.POST.get('rol', '').strip().upper()
+
+    if objetivo.pk == request.user.pk:
+        registrar(request, 'ACCESO_DENEGADO', tabla='auth_user', objeto_id=id,
+                  detalle='Intentó cambiar su propio rol')
+        messages.error(request, 'No puede cambiar su propio rol.')
+        return redirect('usuarios')
+    if objetivo.is_superuser:
+        registrar(request, 'ACCESO_DENEGADO', tabla='auth_user', objeto_id=id,
+                  detalle=f'Intentó cambiar el rol del administrador {objetivo.username} desde la web')
+        messages.error(request, 'El rol de un administrador solo se cambia por consola.')
+        return redirect('usuarios')
+    if nuevo not in ('OPERADOR', 'REGISTRADO'):
+        registrar(request, 'ACCESO_DENEGADO', tabla='auth_user', objeto_id=id,
+                  detalle=f'Intentó asignar un rol no permitido desde la web: {nuevo[:20]}')
+        messages.error(request, 'Desde la web solo se puede asignar Operador o Registrado.')
+        return redirect('usuarios')
+
+    anterior = rol_de(objetivo)
+    if anterior == nuevo:
+        messages.info(request, f'{objetivo.username} ya tiene ese rol.')
+        return redirect('usuarios')
+
+    aplicar_rol(objetivo, nuevo)
+    registrar(request, 'ROL_CAMBIADO', tabla='auth_user', objeto_id=id,
+              detalle=f'{objetivo.username}: {ROLES[anterior]} -> {ROLES[nuevo]}')
+    messages.success(request, f'{objetivo.username}: {ROLES[anterior]} → {ROLES[nuevo]}.')
     return redirect('usuarios')
 
 

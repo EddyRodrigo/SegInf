@@ -45,3 +45,18 @@ def dejaria_sin_admins(user):
              .exclude(pk=user.pk)
              .exclude(bloqueousuario__estado=BloqueoUsuario.SUSPENDIDA))
     return not otros.exists()
+
+ROLES = {'ADMIN': 'Administrador', 'OPERADOR': 'Operador', 'REGISTRADO': 'Registrado'}
+
+
+def rol_de(user):
+    if user.is_superuser:
+        return 'ADMIN'
+    return 'OPERADOR' if user.is_staff else 'REGISTRADO'
+
+
+def aplicar_rol(user, nuevo):
+    """Solo cambia los flags. La bitácora la escribe quien llama."""
+    user.is_superuser = (nuevo == 'ADMIN')
+    user.is_staff = nuevo in ('ADMIN', 'OPERADOR')
+    user.save(update_fields=['is_superuser', 'is_staff'])

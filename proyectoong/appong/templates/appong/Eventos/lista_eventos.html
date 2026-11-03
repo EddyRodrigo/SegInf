@@ -1,7 +1,7 @@
 {% extends 'Front_end/base.html' %}
 
 {% block content %}
-{% if user.username == 'admin' or user.username == 'admin2' or user.username == 'operador01' or user.username == 'operador02' or user.username == 'operador03' %}
+{% if user.is_staff %}
 <h1>LISTADO DE EVENTOS</h1>
 <table>
 	<thead>
@@ -17,16 +17,16 @@
 			<td>{{ evento.proposito }}</td>
 			<td>{{ evento.fecha_inicio }}</td>
 			<td>{{ evento.fecha_fin }}</td>
-			{% if user.username == 'admin' or user.username == 'admin2' %}
+			{% if user.is_superuser %}
 			<td><a href="{% url 'eliminar_evento' evento.id_evento %}">Eliminar</a></td>
 			<td><a href="{% url 'modificar_evento' evento.id_evento %}">Modificar</a></td>
-			{% endif %}
 			<td><a href="{% url 'hoja_asistencia_evento' evento.id_evento %}">Hoja de Asistencia</a></td>
+			{% endif %}
 		</tr>
 		{% endfor%}
 	</tbody>
 </table>
-{% if user.username == 'admin' or user.username == 'admin2' %}
+{% if user.is_superuser %}
 <a href="{% url 'nuevo_evento' %}">Nuevo Evento</a>
 {% endif %}
 {% else %}

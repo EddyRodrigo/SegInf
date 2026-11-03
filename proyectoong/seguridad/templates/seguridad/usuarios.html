@@ -5,6 +5,7 @@
   .ong form.accion { background: none; padding: 0; box-shadow: none; width: auto;
                      max-width: none; display: inline-block; }
   .ong form.accion input { width: 150px; margin: 2px; }
+  .ong form.accion select { width: auto; margin: 2px; padding: 6px; }
   .ong form.accion button { width: auto; padding: 6px 12px; margin: 2px; }
   .ong .cuerpo p.filtros a.filtro {
     background-color: #ffffff;
@@ -78,6 +79,18 @@
             <button type="submit">Activar</button>
           </form>
           {% endif %}
+
+          {% if f.puede_cambiar_rol %}
+          <form class="accion" method="POST" action="{% url 'cambiar_rol_usuario' f.usuario.id %}">
+            {% csrf_token %}
+            <select name="rol">
+              <option value="OPERADOR" {% if f.rol_codigo == 'OPERADOR' %}selected{% endif %}>Operador</option>
+              <option value="REGISTRADO" {% if f.rol_codigo == 'REGISTRADO' %}selected{% endif %}>Registrado</option>
+            </select>
+            <button type="submit">Cambiar rol</button>
+          </form>
+          {% endif %}
+
           {% if f.puede_eliminar %}
           <form class="accion" method="POST" action="{% url 'eliminar_usuario' f.usuario.id %}"
                 onsubmit="return confirm('¿Eliminar a {{ f.usuario.username|escapejs }} definitivamente?')">

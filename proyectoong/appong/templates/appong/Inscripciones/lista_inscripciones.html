@@ -1,7 +1,7 @@
 {% extends 'Front_end/base.html' %}
 
 {% block content %}
-{% if user.username == 'admin' or user.username == 'admin2' or user.username == 'operador01' or user.username == 'operador02' or user.username == 'operador03' %}
+{% if user.is_staff %}
 <h1>LISTADO DE INSCRIPCIONES</h1>
 <table>
 	<thead>
