@@ -11,6 +11,11 @@
 </head>
 <body class="front_end inicio">
     <h2>Inicia Sesión</h2>
+    {% if messages %}
+        {% for m in messages %}
+         <p>{{ m }}</p>
+         {% endfor %}
+    {% endif %}
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}

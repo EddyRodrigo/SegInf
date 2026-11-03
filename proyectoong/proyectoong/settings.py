@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-_d!1hvye)80gt)q$f5v-kl+2)@%z6rzffz*f6*0o)*3_#sa$ho
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-# ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['192.168.1.6', 'localhost', '127.0.0.1']  # ip de la pc, localhost y loopback:ip local de mi pc
 
 
@@ -55,7 +55,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'seguridad.middleware.InactividadMiddleware',   # va al final, después de Authentication y Message
 ]
+TIEMPO_INACTIVIDAD = 15 * 60       # segundos sin actividad
+SESSION_COOKIE_AGE = 8 * 60 * 60   # tope absoluto de la cookie: 8 horas
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
 
 ROOT_URLCONF = 'proyectoong.urls'
 
@@ -87,19 +95,19 @@ LOGOUT_REDIRECT_URL = 'login'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
-        #'ENGINE': 'django.db.backends.mysql',
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ONG',
+        #'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'ong3',
+        'ENGINE': 'django.db.backends.mysql',
+        #*'ENGINE': 'django.db.backends.postgresql',
+        #*'NAME': 'ONG',
         'HOST': 'localhost',
-        #'PORT': '3306',
-        'PORT': '5432',
-        #'USER': 'root',
-        'USER': 'postgres',
-        # 'PASSWORD': 'LoboBlanco152',
-        #'PASSWORD': 'Ong2026Nueva!'
-        'PASSWORD': 'romel.123',
+        'PORT': '3306',
+        #*'PORT': '5432',
+        'USER': 'root',
+        #*'USER': 'postgres',
+        
+        'PASSWORD': 'Ong2026Nueva!'
+        #*'PASSWORD': 'romel.123',
     }
 }
 
@@ -140,7 +148,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
+STATIC_ROOT = BASE_DIR / 'staticfiles'#<-------------------------------------Adicionado por el css
 
 
 # Default primary key field type

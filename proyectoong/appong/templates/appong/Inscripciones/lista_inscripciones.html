@@ -19,6 +19,7 @@
 			{% if user.username == 'admin' or user.username == 'admin2' %}
 			<td><a href="{% url 'eliminar_inscripcion' inscripcion.id_inscripcion %}">Eliminar</a></td>
 			<td><a href="{% url 'modificar_inscripcion' inscripcion.id_inscripcion %}">Modificar</a></td>
+			
 			<td><a href="{% url 'cambiar_rol' inscripcion.id_inscripcion %}">Cambiar Rol</a></td>
 			{% endif %}
 		</tr>

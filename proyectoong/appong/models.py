@@ -45,12 +45,12 @@ class Inscripcion(models.Model):
 
 class Voluntario(models.Model):
     id_voluntario = models.AutoField(primary_key=True)
-    ci = models.IntegerField()
+    ci = models.IntegerField(unique=True)
     nombre = models.CharField(max_length=20)
     apellido = models.CharField(max_length=100)
     fecha_nacimiento = models.DateField()
-    correo = models.CharField(max_length=255)
-    telefono = models.IntegerField()
+    correo = models.CharField(max_length=255, unique=True)
+    telefono = models.IntegerField(unique=True)
 
     class Meta:
         managed = False

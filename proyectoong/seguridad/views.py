@@ -5,15 +5,20 @@ from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.views.decorators.http import require_POST
+from .permisos import solo_superusuario as solo_admin
 
 from .models import Bitacora, BloqueoUsuario
 from .utils import registrar
+from django.db import transaction
 
-solo_admin = user_passes_test(lambda u: u.is_active and u.is_superuser, login_url='login')
+MENSAJE_GENERICO = 'Usuario o contraseña incorrectos, o la cuenta no está disponible.'
+
 
 
 class LoginSeguro(LoginView):
     template_name = 'Front_end/login.html'
+
+    
 
     def post(self, request, *args, **kwargs):
         username = request.POST.get('username', '').strip()
@@ -21,7 +26,7 @@ class LoginSeguro(LoginView):
         if bloqueo:
             registrar(request, 'LOGIN_RECHAZADO', usuario=username, detalle='Cuenta bloqueada')
             form = self.get_form()
-            form.add_error(None, 'Cuenta bloqueada. Contacte a un administrador.')
+            form.add_error(None, MENSAJE_GENERICO)
             return self.render_to_response(self.get_context_data(form=form))
         return super().post(request, *args, **kwargs)
 
@@ -36,19 +41,35 @@ class LoginSeguro(LoginView):
         username = self.request.POST.get('username', '').strip()
         user = User.objects.filter(username=username).first()
         if user:
-            b, _ = BloqueoUsuario.objects.get_or_create(usuario=user)
-            b.intentos_fallidos += 1
+            with transaction.atomic():
+                b, _ = BloqueoUsuario.objects.select_for_update().get_or_create(usuario=user)
+                b.intentos_fallidos += 1
+                recien_bloqueada = (b.intentos_fallidos >= settings.MAX_INTENTOS_LOGIN
+                                    and not b.bloqueado)
+                if recien_bloqueada:
+                    b.bloqueado = True
+                    b.fecha_bloqueo = timezone.now()
+                b.save()
             registrar(self.request, 'LOGIN_FALLIDO', usuario=username,
                       detalle=f'Intento {b.intentos_fallidos} de {settings.MAX_INTENTOS_LOGIN}')
-            if b.intentos_fallidos >= settings.MAX_INTENTOS_LOGIN:
-                b.bloqueado = True
-                b.fecha_bloqueo = timezone.now()
+            if recien_bloqueada:
                 registrar(self.request, 'CUENTA_BLOQUEADA', usuario=username,
                           detalle='Superó el máximo de intentos')
-            b.save()
         else:
             registrar(self.request, 'LOGIN_FALLIDO', usuario=username, detalle='Usuario inexistente')
         return super().form_invalid(form)
+
+#si falla trata de quitar esto jejeje
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.error_messages = {
+            **form.error_messages,
+            'invalid_login': MENSAJE_GENERICO,
+            'inactive': MENSAJE_GENERICO,
+        }
+        return form
+
+    
 
 
 @solo_admin

@@ -1,0 +1,153 @@
+.ong {
+    width: 100% ;
+    min-height: 100%;
+    color: #2c3e50;
+    text-align: center;
+}
+
+.ong .container {
+    display: flex ;
+    flex-direction: column ;
+    width: 85% ;
+    min-height: 100% ;
+    margin: 20px auto ;
+    gap: 20px ;
+}
+
+
+.ong header {
+    background-color: #2e8b57 ; 
+    padding: 20px 30px ;
+    border-radius: 15px ;
+    display: flex ;
+    justify-content: space-between ;
+    align-items: center ;
+}
+
+
+.ong .cuerpo {
+    min-height: 70vh;
+    padding: 30px;
+    background-color: #c8e6c9;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+}
+
+.ong .cuerpo a {
+    text-decoration: none;
+    color: #2c3e50;
+}
+
+.ong table {
+    width: 90%;
+    max-width: 1500px;
+    border-collapse: collapse;
+    margin: 20px auto;
+}
+
+.ong th, .ong td {
+    border: 1px solid #2e8b57; 
+    padding: 10px;
+    text-align: center;
+    background-color: yellow;
+}
+
+.ong th {
+    background-color: #2e8b57;
+    color: #ffffff;
+}
+
+.ong td {
+    background-color: #e6f2ea;
+}
+
+.ong footer {
+    text-align: center;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: #2e8b57;
+    color: #ffffff;
+}
+
+.ong h1{
+    color: #1b5e20 !important; 
+}
+.ong h2 {
+    color: #1b5e20 !important; 
+    margin-bottom: 15px !important;
+}
+.ong .cancel-link {
+    width: 100%;
+    background-color: #2e8b57;
+    color: white;
+    border: 1px solid #1b5e20;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 5px;
+}
+
+.ong .cancel-link:hover {
+    background-color: #1b5e20; 
+    border-color: #a3d9a5; 
+}
+
+.ong button, .ong .btn {
+    background-color: #2e8b57;
+    color: white;
+    border: 1px solid #1b5e20;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 5px;
+}
+
+.ong button:hover, .ong .btn:hover {
+    background-color: #1b5e20; 
+    border-color: #a3d9a5; 
+}
+.ong .btn {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 4px;
+    border: 2px solid #4CAF50; 
+    border-radius: 6px;
+    background-color: #66bb6a; 
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.ong .btn:hover {
+    background-color: #388e3c; 
+    border-color: #1b5e20;
+    color: white;
+}
+
+
+.ong input, .ong select {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #2e8b57;
+    margin: 5px 0;
+    width: 100%;
+    max-width: 300px;
+    transition: border-color 0.3s ease;
+}
+
+.ong input:focus, .ong select:focus {
+    border-color: #1b5e20;
+    outline: none;
+}
+
+.ong form {
+    display: inline-block; 
+    justify-content: center;       
+    margin: 0 auto;         
+}

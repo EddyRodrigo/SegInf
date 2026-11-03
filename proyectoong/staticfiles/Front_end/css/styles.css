@@ -1,0 +1,340 @@
+
+.front_end *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.front_end header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2e8b57;   /**/
+    padding: 20px;
+}
+
+.front_end header .titulo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+    color: white;
+}
+
+.front_end header .login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.front_end header .login .user{
+    color: white;
+    background: #3cb371; 
+    padding: 10px 15px;
+    border-radius: 24px;
+    font-size: 24px;
+}
+
+.front_end header .login .login_link a{
+    text-decoration: none;
+    background: #3cb371; 
+    padding: 10px 15px;
+    border-radius: 24px;
+    color: white;
+    font-size: 14px;
+}
+
+.front_end header .login .login_link a:hover{
+    background: #2e8b57; 
+}
+
+.front_end h1,.front_end h2{
+    color: white;
+}
+
+#logo {
+    color: #ffffff;
+    font-size: 60px;
+    margin: 0 20px 0 0;
+}
+
+#logo strong:hover {
+    text-shadow: 2px 2px 0 black;
+}
+
+main {
+    position: relative; 
+    padding: 50px; 
+    min-height: 100vh; 
+    height: auto;     
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: flex-start; 
+    background-color: #d4f0dc; 
+    overflow: visible; 
+    width: 100%;       
+}
+
+.cuerpo {
+    min-height: 80vh;
+    padding: 20px 0 100px 0;
+}
+
+.front_end footer {
+    /*position: fixed;
+    bottom: 0;
+    left: 0;*/
+    width: 100%;
+    background-color: #2e8b57;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+    z-index: 10; 
+}
+
+main::before {
+    content: "DJANGO";
+    position: fixed;
+    font-size: 120px;
+    color: rgba(60, 179, 113, 0.1); 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    pointer-events: none; 
+    z-index: 0;
+}
+
+main section, main p {
+    position: relative;
+    z-index: 1; 
+}
+
+.ong table td a {
+    display: inline-block;  
+    padding: 6px 12px;     
+    border-radius: 12px;    
+    background-color: #3cb371;
+    color: white;
+    text-decoration: none;
+    transition: background 0.3s;
+    font-size: 16px;
+}
+
+.ong table td a:hover {
+    background-color: #2e8b57;
+}
+
+
+.ong  a {
+    display: inline-block; 
+    text-decoration: none;
+    background-color: #3cb371;
+    color: white;
+    padding: 6px 12px;     
+    border-radius: 12px; 
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.ong  a:hover {
+    background-color: #2e8b57; 
+}
+
+main p span {
+    margin-left: 10px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+.front_end.inicio {
+    background-color: #3cb371; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: monospace;
+}
+
+.ong form {
+    background-color: #2e8b57; 
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 400px;
+    width: 90%;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+
+.front_end button {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 24px;
+    background-color: #3cb371; 
+    color: white;
+    font-size: 16px;
+    border:  2px solid white;;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.front_end button:hover {
+    background-color: #2e8b57;
+    border: 2px solid white;
+}
+
+.front_end p {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.front_end p a {
+    color: #3cb371;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.front_end p a:hover {
+    color: #2e8b57;
+}
+
+.front_end h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.front_end .log{
+    background-color: #2e8b57;
+    color: white;
+    border: 1px solid #1b5e20;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 5px;
+}
+
+.front_end .log:hover{
+    background-color: #1b5e20; 
+    border-color: #a3d9a5; 
+}
+.front_end nav {
+    width: 100%;
+    background: #2e8b57;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    padding: 14px 10px;
+    position: relative;
+}
+
+/* Enlaces estilo Material Design */
+.front_end nav .btn {
+    position: relative;
+    padding: 10px 15px;
+    font-size: 20px;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+/* Línea animada debajo del enlace */
+.front_end nav .btn::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0%;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.front_end nav .btn:hover {
+    color: #dfffe8;
+}
+
+.front_end nav .btn:hover::after {
+    width: 100%;
+}
+
+.front_end nav .btn.active {
+    color: #dfffe8;
+}
+
+.front_end nav .btn.active::after {
+    width: 100%;
+}
+
+
+
+@media screen and (max-width: 768px) {
+
+    .front_end header {
+        flex-direction: column;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .front_end header .titulo {
+        width: 100%;
+        flex: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .front_end header #logo {
+        font-size: 38px;
+        margin: 0;
+    }
+
+    .front_end header .titulo nav {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+        padding: 10px 0;
+    }
+
+    .front_end header .titulo nav .btn {
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    .front_end header .login {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}

@@ -5,6 +5,7 @@
 <div class="ong">
 <h2>Voluntario: {{ inscripcion.voluntario }}</h2>
 <h2>Evento: {{ inscripcion.evento}}</h2>
+{% if error %}<p>{{ error }}</p>{% endif %}
 <form method="POST">
     {% csrf_token %}
     <label for="rol">Ingrese el nuevo rol:</label>
