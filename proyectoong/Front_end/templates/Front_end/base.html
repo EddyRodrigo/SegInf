@@ -21,7 +21,7 @@
 		       <a href="{% url 'asistencias' %}" class="btn">Asistencias</a>
                {% if user.is_superuser %}
                <a href="{% url 'ver_log' %}" class="btn">Registros</a>
-               <a href="{% url 'usuarios_bloqueados' %}" class="btn">Bloqueados</a>
+               <a href="{% url 'usuarios' %}" class="btn">Usuarios</a>
                {% endif %}
 		    </nav>	
         </div>

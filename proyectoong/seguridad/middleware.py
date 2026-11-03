@@ -15,11 +15,11 @@ class InactividadMiddleware:
 
     def __call__(self, request):
         if request.user.is_authenticated:
-            # 1) ¿la cuenta fue bloqueada mientras tenía la sesión abierta?
-            if BloqueoUsuario.objects.filter(usuario=request.user, bloqueado=True).exists():
-                registrar(request, 'SESION_REVOCADA', detalle='Cuenta bloqueada con sesión activa')
+            # 1) ¿la cuenta fue suspendida mientras tenía la sesión abierta?
+            if BloqueoUsuario.objects.filter(usuario=request.user, estado=BloqueoUsuario.SUSPENDIDA).exists():
+                registrar(request, 'SESION_REVOCADA', detalle='Cuenta suspendida con sesión activa')
                 logout(request)
-                messages.error(request, 'Su cuenta fue bloqueada. Contacte a un administrador.')
+                messages.error(request, 'Su cuenta no está disponible. Contacte a un administrador.')
                 return redirect('login')
 
             # 2) ¿pasó demasiado tiempo sin actividad?

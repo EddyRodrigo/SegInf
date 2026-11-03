@@ -16,7 +16,13 @@ class Bitacora(models.Model):
 
 
 class BloqueoUsuario(models.Model):
+    ACTIVA = 'ACTIVA'
+    SUSPENDIDA = 'SUSPENDIDA'
+    ESTADOS = [(ACTIVA, 'Activa'), (SUSPENDIDA, 'Suspendida')]
+
     usuario = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    estado = models.CharField(max_length=12, choices=ESTADOS, default=ACTIVA)
+    motivo = models.CharField(max_length=200, blank=True)
+    cambiado_por = models.CharField(max_length=150, blank=True)  # texto: sobrevive si se elimina al admin
+    fecha_estado = models.DateTimeField(null=True, blank=True)
     intentos_fallidos = models.PositiveIntegerField(default=0)
-    bloqueado = models.BooleanField(default=False)
-    fecha_bloqueo = models.DateTimeField(null=True, blank=True)

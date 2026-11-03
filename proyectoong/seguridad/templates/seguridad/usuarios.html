@@ -1,0 +1,101 @@
+{% extends 'Front_end/base.html' %}
+{% block content %}
+{% if user.is_superuser %}
+<style>
+  .ong form.accion { background: none; padding: 0; box-shadow: none; width: auto;
+                     max-width: none; display: inline-block; }
+  .ong form.accion input { width: 150px; margin: 2px; }
+  .ong form.accion button { width: auto; padding: 6px 12px; margin: 2px; }
+  .ong .cuerpo p.filtros a.filtro {
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid #1b5e20;
+    padding: 8px 16px;
+    margin: 4px;
+    border-radius: 20px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .ong p.filtros a.filtro {
+    background-color: #ffffff;
+    color: #1b5e20;
+    border: 2px solid #1b5e20;
+    padding: 8px 16px;
+    margin: 4px;
+    border-radius: 20px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .ong p.filtros a.filtro:hover {
+    background-color: #c8e6c9;
+    color: #1b5e20;
+  }
+  .ong p.filtros a.filtro.activo {
+    background-color: #1b5e20;
+    color: #ffffff;
+  }
+
+</style>
+
+<h1>GESTIÓN DE USUARIOS</h1>
+
+{% for m in messages %}<p><strong>{{ m }}</strong></p>{% endfor %}
+
+<p class="filtros">
+  <a href="{% url 'usuarios' %}" class="filtro {% if not filtro %}activo{% endif %}">Todas ({{ n_total }})</a>
+  <a href="?estado=ACTIVA" class="filtro {% if filtro == 'ACTIVA' %}activo{% endif %}">Activas ({{ n_activas }})</a>
+  <a href="?estado=SUSPENDIDA" class="filtro {% if filtro == 'SUSPENDIDA' %}activo{% endif %}">Suspendidas ({{ n_suspendidas }})</a>
+</p>
+
+<table>
+  <thead>
+    <tr><th>usuario</th><th>correo</th><th>rol</th><th>estado</th><th>motivo</th>
+        <th>cambiado por</th><th>fecha</th><th>acciones</th></tr>
+  </thead>
+  <tbody>
+    {% for f in filas %}
+    <tr>
+      <td>{{ f.usuario.username }}</td>
+      <td>{{ f.usuario.email }}</td>
+      <td>{{ f.rol }}</td>
+      <td><strong>{{ f.estado_texto }}</strong></td>
+      <td>{{ f.motivo }}</td>
+      <td>{{ f.cambiado_por }}</td>
+      <td>{{ f.fecha_estado|default:"—" }}</td>
+      <td>
+        {% if f.es_yo %}
+          (usted)
+        {% else %}
+          {% if f.estado == 'ACTIVA' %}
+          <form class="accion" method="POST" action="{% url 'suspender_usuario' f.usuario.id %}">
+            {% csrf_token %}
+            <input type="text" name="motivo" placeholder="motivo (opcional)" maxlength="150">
+            <button type="submit">Suspender</button>
+          </form>
+          {% else %}
+          <form class="accion" method="POST" action="{% url 'activar_usuario' f.usuario.id %}">
+            {% csrf_token %}
+            <button type="submit">Activar</button>
+          </form>
+          {% endif %}
+          {% if f.puede_eliminar %}
+          <form class="accion" method="POST" action="{% url 'eliminar_usuario' f.usuario.id %}"
+                onsubmit="return confirm('¿Eliminar a {{ f.usuario.username|escapejs }} definitivamente?')">
+            {% csrf_token %}
+            <button type="submit">Eliminar</button>
+          </form>
+          {% elif f.usuario.is_superuser %}
+          <!--<small>Eliminar: solo por consola</small>-->
+          {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="8">No hay usuarios en esta vista.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<h2>Ud no tiene permiso para la app ong</h2>
+{% endif %}
+{% endblock %}
