@@ -10,4 +10,5 @@ urlpatterns = [
     path("login/", LoginSeguro.as_view(), name="login"),
     path("logout/", views.cerrar_sesion, name = "logout"),
     path("registro/", views.registro, name = "registro"),
+    path("verificar/<str:token>/", views.verificar_correo, name="verificar_correo"),
 ]

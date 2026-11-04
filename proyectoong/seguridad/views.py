@@ -89,6 +89,7 @@ def usuarios(request):
             'motivo': b.motivo if b else '',
             'cambiado_por': b.cambiado_por if b else '',
             'fecha_estado': b.fecha_estado if b else None,
+            'correo_verificado': b.correo_verificado if b else True,
             'es_yo': es_yo,
             'puede_eliminar': not es_yo and not u.is_superuser,   # admins: solo por consola
             'puede_cambiar_rol': not es_yo and not u.is_superuser,   # admins: solo por consola
@@ -114,6 +115,12 @@ def _aplicar_estado(request, objetivo, nuevo, motivo):
         return redirect('usuarios')
     if estado_de(objetivo) == nuevo:
         messages.info(request, f'{objetivo.username} ya estaba en ese estado.')
+        return redirect('usuarios')
+    if nuevo == BloqueoUsuario.ACTIVA and BloqueoUsuario.objects.filter(
+            usuario=objetivo, correo_verificado=False).exists():
+        registrar(request, 'ACCESO_DENEGADO', tabla='auth_user', objeto_id=objetivo.id,
+                  detalle='Intentó activar una cuenta con el correo sin verificar')
+        messages.error(request, f'{objetivo.username} aún no verificó su correo.')
         return redirect('usuarios')
     anterior = cambiar_estado(objetivo, nuevo, motivo, request.user.username)
     registrar(request, 'ESTADO_CAMBIADO', tabla='auth_user', objeto_id=objetivo.id,

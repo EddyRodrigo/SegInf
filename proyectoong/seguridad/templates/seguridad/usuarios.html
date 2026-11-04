@@ -57,7 +57,7 @@
     {% for f in filas %}
     <tr>
       <td>{{ f.usuario.username }}</td>
-      <td>{{ f.usuario.email }}</td>
+      <td>{{ f.usuario.email }}{% if not f.correo_verificado %}<br><small>sin verificar</small>{% endif %}</td>
       <td>{{ f.rol }}</td>
       <td><strong>{{ f.estado_texto }}</strong></td>
       <td>{{ f.motivo }}</td>
@@ -73,11 +73,13 @@
             <input type="text" name="motivo" placeholder="motivo (opcional)" maxlength="150">
             <button type="submit">Suspender</button>
           </form>
-          {% else %}
+          {% elif f.correo_verificado %}
           <form class="accion" method="POST" action="{% url 'activar_usuario' f.usuario.id %}">
             {% csrf_token %}
             <button type="submit">Activar</button>
           </form>
+          {% else %}
+          <small>Falta verificar el correo</small>
           {% endif %}
 
           {% if f.puede_cambiar_rol %}

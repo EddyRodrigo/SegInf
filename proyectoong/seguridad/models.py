@@ -26,3 +26,5 @@ class BloqueoUsuario(models.Model):
     cambiado_por = models.CharField(max_length=150, blank=True)  # texto: sobrevive si se elimina al admin
     fecha_estado = models.DateTimeField(null=True, blank=True)
     intentos_fallidos = models.PositiveIntegerField(default=0)
+    # True por defecto: las cuentas existentes no se ven afectadas. El registro nuevo lo pone en False.
+    correo_verificado = models.BooleanField(default=True)
