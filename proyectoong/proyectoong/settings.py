@@ -109,18 +109,18 @@ LOGOUT_REDIRECT_URL = 'login'
 DATABASES = {
     'default': {
         #'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'ong3',
-        'ENGINE': 'django.db.backends.mysql',
-        #*'ENGINE': 'django.db.backends.postgresql',
-        #*'NAME': 'ONG',
+        #'NAME': 'ong3',
+        #'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ONG',
         'HOST': 'localhost',
-        'PORT': '3306',
-        #*'PORT': '5432',
-        'USER': 'root',
-        #*'USER': 'postgres',
-        
-        'PASSWORD': 'Ong2026Nueva!'
-        #*'PASSWORD': 'romel.123',
+        #'PORT': '3306',
+        'PORT': '5432',
+        #'USER': 'root',
+        'USER': 'postgres',
+
+        #'PASSWORD': 'Ong2026Nueva!'
+        'PASSWORD': 'romel.123',
     }
 }
 
